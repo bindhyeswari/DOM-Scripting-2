@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Capturing and Bubbling</title>
+    <link rel="stylesheet" href="base.css"/>
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            //document.querySelector('#div3').addEventListener('click', eventHandler2);
+            document.querySelector('#div1').addEventListener('click', eventHandler, true); // bool --> capturing (true) ? bubbling (false)
+            document.querySelector('#div2').addEventListener('click', eventHandler2, true);
+            document.querySelector('#div2').addEventListener('click', eventHandler, true);
+            document.querySelector('#div3').addEventListener('click', eventHandler, true);
+            document.querySelector('button').addEventListener('click', eventHandler, true);
+            document.querySelector('#div2').addEventListener('click', eventHandler, false);
+            document.querySelector('#div1').addEventListener('click', eventHandler, false);
+            //document.querySelector('button').addEventListener('click', eventHandler);
+
+
+            function eventHandler2(event) {
+                // this or the context for an event handler refers to the object
+                // on which the event is registered.
+                console.log('The event handler 2 is fired. Phase: ', event.eventPhase, event.currentTarget, event.target);
+
+                if (event.currentTarget.id === 'div2') {
+
+                    // check the phase: event.eventPhase
+
+                    console.log('Handler 2: Stop propagation at this point ... Event phase is : ', event.eventPhase === 3 ? 'bubbling' : 'capturing');
+                    event.stopImmediatePropagation();
+                }
+            }
+
+            function eventHandler(event) {
+                // this or the context for an event handler refers to the object
+                // on which the event is registered.
+                console.log('The event handler 2 is fired. Phase: ', event.eventPhase, event.currentTarget, event.target);
+
+                if (event.currentTarget.id === 'div2') {
+
+                    // check the phase: event.eventPhase
+
+                    console.log('Stop propagation at this point ... Event phase is : ', event.eventPhase === 3 ? 'bubbling' : 'capturing');
+                    event.stopPropagation();
+                }
+            }
+        });
+
+    </script>
+    <style>
+
+        div {
+            background-color: rgba(255, 0, 0, 0.44);
+            padding: 1em;
+            border: 1px solid red;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="div1">
+        <div id="div2">
+            <div id="div3">
+                <button>
+                    Click Me!
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

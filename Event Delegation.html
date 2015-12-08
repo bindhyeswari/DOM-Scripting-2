@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Delegation</title>
+    <link rel="stylesheet" href="base.css"/>
+
+</head>
+<body>
+
+    <div>
+
+
+    </div>
+
+    <script>
+
+        var div = document.querySelector('div');
+
+        div.addEventListener('click', function (event) {
+            console.log('There was a click event ... ', event.target.parentNode.id);
+            event.stopPropagation();
+        }, false);
+
+        for (var i = 0; i < 10; i++) {
+
+
+            var btn = document.createElement('button');
+            btn.id = 'btn' + (i + 1);
+            btn.innerHTML = '<span>Click Me ' + (i + 1) + '!</span>';
+            div.appendChild(btn);
+            btn.addEventListener('click', function (event) {
+                console.log('Handler within the button: This is the ' + this.id);
+            });
+        }
+
+    </script>
+
+</body>
+</html>

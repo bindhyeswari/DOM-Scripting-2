@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="base.css"/>
+    <style>
+
+        div {
+            height: 100px;
+            width: 100px;
+            background-color: #eee;
+            border: 1px solid gray;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .current {
+            background-color: red;
+        }
+
+    </style>
+    <script>
+
+
+
+    </script>
+</head>
+<body>
+
+    <div id="div1">
+        Div 1
+    </div>
+    <div id="div2">
+        Div 2
+    </div>
+
+
+
+    <script>
+
+        document.querySelector('#div1').addEventListener('mouseleave', function (event) {
+            console.log('Mouse leave ... ');
+            this.classList.remove('current');
+            console.log(event.relatedTarget);
+        });
+
+        document.querySelector('#div1').addEventListener('mouseenter', function (event) {
+            console.log('Mouse leave ... ');
+            this.classList.add('current');
+            console.log(event.relatedTarget);
+        });
+
+    </script>
+
+</body>
+</html>
