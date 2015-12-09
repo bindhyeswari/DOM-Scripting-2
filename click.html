@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(document).on('click', '[timepicker-dropdown]', null, function () {
+                console.log('click was fired on timepicker ... ');
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div timepicker-dropdown>
+        hello world
+    </div>
+    <div>
+        test
+    </div>
+
+</body>
+</html>
